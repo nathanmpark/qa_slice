@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160121014002) do
 
   create_table "athletes", force: :cascade do |t|
     t.string   "name"
+    t.integer  "sport_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,7 +38,7 @@ ActiveRecord::Schema.define(version: 20160121014002) do
   end
 
   create_table "qa_sessions", force: :cascade do |t|
-    t.integer  "athlete_id"
+    t.integer  "host_id"
     t.integer  "fan_id"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -48,8 +49,9 @@ ActiveRecord::Schema.define(version: 20160121014002) do
   create_table "questions", force: :cascade do |t|
     t.string   "content"
     t.integer  "fan_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "qa_session_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "sports", force: :cascade do |t|
