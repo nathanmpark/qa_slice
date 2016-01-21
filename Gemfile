@@ -1,15 +1,21 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.5'
-
 gem 'rails-api'
-
-gem 'spring', :group => :development
-
-
 gem 'pg'
+gem 'pry-rails'
+gem 'sprockets-rails'
+gem 'active_model_serializers'
+gem 'rack-cors'
+gem 'rest-client', '~> 1.8'
+gem 'json'
+gem "heroku"
 
+gem 'rails_12factor', group: :production
+
+group :development, :test do
+  gem 'byebug'
+end
 
 
 # To use ActiveModel has_secure_password
