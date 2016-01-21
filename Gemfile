@@ -9,7 +9,8 @@ gem 'active_model_serializers'
 gem 'rack-cors'
 gem 'rest-client', '~> 1.8'
 gem 'json'
-gem "heroku"
+gem 'heroku'
+gem 'faker'
 
 gem 'rails_12factor', group: :production
 
