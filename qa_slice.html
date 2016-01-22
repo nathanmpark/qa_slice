@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0811)https://mail-attachment.googleusercontent.com/attachment/u/0/?ui=2&ik=ba59b4fa44&view=att&th=1526175e4584f969&attid=0.1&disp=inline&realattid=f_ijnhkjk10&safe=1&zw&saddbat=ANGjdJ8KAJFlQ85Ne7qGIzPiSE3hb2Yk_MFz7zxVH451jrtno7TzvrcxQ6MecoTqDFNepb_5FUSWCeveY2UvtS4LH5v1Xf_mTTNvewkf-3Pv3l0RjnhoGB8QEFhyGJHgQ7NhA_IobmbKtSE_x8nOOR4X0B99rGC2kRZpqlPtcw5s7USfnYDq5SZg-IWaHYwL777qb1Uy2ZlxYT4caFJnM5qc3G2Kr_8U_S5NWsJaRiFFTCtgqFJQtO142ykJZuAweivKRx5BzXpWbMSnTRi-rwTENwbITGCgZIwLO4ZfAJvinZNhxc8fc16DeOdFDa07iRzAZKb8YUZaQvFbiHdiOjrMye8lApXcbONDlX1-xWQAbWo8UbxUAOp9AGTA64YlRNCEb90AewFTShUbRGvQ1BvX87ocT7KakIRb42XXTRLD0DU9BOPEemW8Fts6epOThiLIqQZEKO04z6DY8-YNiJxK4ru4fqzaqSWhjV3EHBKJEnBBzGI2l0gwcPyfZx8_06cRZhqBkmKLYfSu6sWJmDDMvU2uivN6kUIHjltes4XjJwdH3Xuvy6cOyL4BZaU5JsjupbFkMavfO5wGxTWlkRHy8uRTAegIkxA1BQ8IIFdvNMZDMZZ1X8f2503HBso -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+  
+    
+    
+    
+  
+  <div>
+    
+      <h2>Slyce Worktest</h2>
+      <p>Your task is to design and implement data schemas and corresponding HTTP server endpoints for a professional athlete hosting a Question &amp; Answer session with fans.</p>
+      <p>Using an HTTP server and data store of your choosing, please implement the REST-like endpoints listed below.</p>
+      <p>Each task details a minimum set of required data attributes, add more as you deem necessary.</p>
+      <p>The routes in the task list are only suggestions, modify them however you see fit.</p>
+      <p>Be prepared to discuss any benefits, limitations, and tradeoffs of your design after the exercise.</p>
+      <br>
+      <p>This webpage is meant to help you test your implementation, feel free to make modifications in order to get it talking with your server.</p>
+      <p>By default, this webpage expects an HTTP server running on <strong><a href="http://localhost:8080/" target="_blank">http://localhost:8080</a></strong> that accepts and returns all data in JSON format.</p>
+      <p>It also attempts to make requests to the example routes, so if you make changes to the routes, you will also need to change the JavaScript on the page code.</p>
+      <p>Feel free to ask us any questions you may have.</p>
+      <br>
+      <p>When you are finished, please email your source code (including your version of this HTML file if you made any modifications) along with directions for launching the server and data store to <a href="mailto:dian@slyce.io" target="_blank">dian@slyce.io</a> or give us a link to your GitHub.</p>
+    
+
+    
+      <h3>Tasks</h3>
+      <p>*Note: All data models are expected to have some sort of <strong>id</strong> field. All user models must have at least a <strong>name</strong> attribute.</p>
+      <ul>
+        <li>
+          <p>1. Create a QA session. QA sessions must have a <strong>host</strong> user, a <strong>start_time</strong>, and an <strong>end_time</strong>.</p>
+          <code>POST /qa</code>
+        </li>
+        <li>
+          <p>2. Retrieve a QA session.</p>
+          <code>GET /qa/:qa_id</code>
+        </li>
+        <li>
+          <p>3. Ask a question. Questions are within the context of a single QA session and must contain <strong>text</strong> and an <strong>asked_by</strong> user.</p>
+          <code>POST /question/:qa_id</code>
+        </li>
+        <li>
+          <p>4. Answer a question. Can assume one answer per question. An answer can allow for either <strong>text</strong> and/or <strong>image_url</strong> as a response. It must also have an <strong>answered_by</strong> user.</p>
+          <code>POST /answer/:question_id</code>
+        </li>
+        <li>
+          <p>5. Retrieve a list of questions for a given QA session. Allow for the option of filtering answered vs. non-answered questions.</p>
+          <p>Each question in the result list must contain all relevant expanded models. IE: the asked_by user, the answer (if there was one), and the answered_by user.</p>
+          <code>GET /qa/:qa_id/questions</code>
+        </li>
+      </ul>
+    
+
+    
+      <h3>Testing</h3>
+      <p>Form fields are sent to the server as JSON in POST requests. EX: the host_name and start_time fields are sent as {host_name: value, start_time: value}. ID fields may be sent as part of the URL depending on the endpoint. EX: qa_id = 1234 is included in the URL as /qa/1234</p>
+      <p>If you see 'Access control...' type errors in the browser developer console, read the comments in the JavaScript source code of this HTML page regarding 'CORS'.</p>
+      <form target="_blank" onsubmit="try {return window.confirm(&quot;You are submitting information to an external page.\nAre you sure?&quot;);} catch (e) {return false;}">
+        <fieldset>
+          <legend>1. Create Q&amp;A Session</legend>
+          <input name="host_name" type="text">
+          <input name="start_time">
+          <input name="end_time">
+          <button type="submit">POST</button>
+        </fieldset>
+        <div></div>
+        <a title="Clear">X</a>
+        <div></div>
+        <pre><code></code></pre>
+      </form>
+
+      <form target="_blank" onsubmit="try {return window.confirm(&quot;You are submitting information to an external page.\nAre you sure?&quot;);} catch (e) {return false;}">
+        <fieldset>
+          <legend>2. Get Q&amp;A Session</legend>
+          <input name="qa_id">
+          <button type="submit">GET</button>
+        </fieldset>
+        <div></div>
+        <a title="Clear">X</a>
+        <div></div>
+        <pre><code></code></pre>
+      </form>
+
+      <form target="_blank" onsubmit="try {return window.confirm(&quot;You are submitting information to an external page.\nAre you sure?&quot;);} catch (e) {return false;}">
+        <fieldset>
+          <legend>3. Ask a question</legend>
+          <input name="qa_id">
+          <input name="text">
+          <input name="asked_by_name">
+          <button type="submit">POST</button>
+        </fieldset>
+        <div></div>
+        <a title="Clear">X</a>
+        <div></div>
+        <pre><code></code></pre>
+      </form>
+
+      <form target="_blank" onsubmit="try {return window.confirm(&quot;You are submitting information to an external page.\nAre you sure?&quot;);} catch (e) {return false;}">
+        <fieldset>
+          <legend>4. Answer a question</legend>
+          <input name="question_id">
+          <input name="text">
+          <input name="image_url">
+          <input name="answered_by">
+          <button type="submit">POST</button>
+        </fieldset>
+        <div></div>
+        <a title="Clear">X</a>
+        <div></div>
+        <pre><code></code></pre>
+      </form>
+
+      <form target="_blank" onsubmit="try {return window.confirm(&quot;You are submitting information to an external page.\nAre you sure?&quot;);} catch (e) {return false;}">
+        <fieldset>
+          <legend>5. Get Questions</legend>
+          <input name="qa_id">
+          <button type="submit">GET</button>
+        </fieldset>
+        <div></div>
+        <a title="Clear">X</a>
+        <div></div>
+        <pre><code></code></pre>
+      </form>
+    
+
+    
+    
+    
+  </div>
+</body></html>
