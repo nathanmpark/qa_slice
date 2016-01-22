@@ -4163,3 +4163,904 @@ Started GET "/" for ::1 at 2016-01-21 16:49:53 -0800
 Processing by Rails::WelcomeController#index as HTML
   Rendered /Users/nathanpark/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (2.0ms)
 Completed 200 OK in 17ms (Views: 17.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (20.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (13.9ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateAthletes (20160121013950)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (17.2ms)[0m  [1mCREATE TABLE "athletes" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160121013950"]]
+  [1m[36m (6.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFans (20160121013954)
+  [1m[35m (6.1ms)[0m  BEGIN
+  [1m[36m (15.6ms)[0m  [1mCREATE TABLE "fans" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160121013954"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateQuestions (20160121013959)
+  [1m[35m (6.3ms)[0m  BEGIN
+  [1m[36m (15.6ms)[0m  [1mCREATE TABLE "questions" ("id" serial primary key, "content" character varying, "fan_id" integer, "qa_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160121013959"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAnswers (20160121014002)
+  [1m[35m (6.3ms)[0m  BEGIN
+  [1m[36m (16.6ms)[0m  [1mCREATE TABLE "answers" ("id" serial primary key, "content" character varying, "athlete_id" integer, "question_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160121014002"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateQas (20160121051235)
+  [1m[35m (5.8ms)[0m  BEGIN
+  [1m[36m (7.8ms)[0m  [1mCREATE TABLE "qas" ("id" serial primary key, "host_id" integer, "start_time" timestamp, "end_time" timestamp, "fan_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160121051235"]]
+  [1m[36m (6.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'answers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'athletes'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'fans'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'qas'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'questions'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Meta Pouros"], ["created_at", "2016-01-22 01:48:07.454578"], ["updated_at", "2016-01-22 01:48:07.454578"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Roel West"], ["created_at", "2016-01-22 01:48:07.473509"], ["updated_at", "2016-01-22 01:48:07.473509"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Maci Bernier"], ["created_at", "2016-01-22 01:48:07.482504"], ["updated_at", "2016-01-22 01:48:07.482504"]]
+  [1m[35m (6.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Adeline Kirlin"], ["created_at", "2016-01-22 01:48:07.491528"], ["updated_at", "2016-01-22 01:48:07.491528"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Danny Conroy"], ["created_at", "2016-01-22 01:48:07.494343"], ["updated_at", "2016-01-22 01:48:07.494343"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Zoey Ward III"], ["created_at", "2016-01-22 01:48:07.496821"], ["updated_at", "2016-01-22 01:48:07.496821"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Hillary Walsh"], ["created_at", "2016-01-22 01:48:07.499165"], ["updated_at", "2016-01-22 01:48:07.499165"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Providenci O'Reilly"], ["created_at", "2016-01-22 01:48:07.501583"], ["updated_at", "2016-01-22 01:48:07.501583"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Ms. Gina Grimes"], ["created_at", "2016-01-22 01:48:07.503900"], ["updated_at", "2016-01-22 01:48:07.503900"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Miss Casey Klein"], ["created_at", "2016-01-22 01:48:07.505782"], ["updated_at", "2016-01-22 01:48:07.505782"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Lina Dickens"], ["created_at", "2016-01-22 01:48:07.507438"], ["updated_at", "2016-01-22 01:48:07.507438"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Mrs. Therese Klocko"], ["created_at", "2016-01-22 01:48:07.509116"], ["updated_at", "2016-01-22 01:48:07.509116"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Shyanne Harris I"], ["created_at", "2016-01-22 01:48:07.510746"], ["updated_at", "2016-01-22 01:48:07.510746"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Joshua Greenholt"], ["created_at", "2016-01-22 01:48:07.512318"], ["updated_at", "2016-01-22 01:48:07.512318"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Dell Dooley"], ["created_at", "2016-01-22 01:48:07.513959"], ["updated_at", "2016-01-22 01:48:07.513959"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Aida Stanton"], ["created_at", "2016-01-22 01:48:07.515452"], ["updated_at", "2016-01-22 01:48:07.515452"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Adriel Gislason"], ["created_at", "2016-01-22 01:48:07.517105"], ["updated_at", "2016-01-22 01:48:07.517105"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Chelsea Mertz"], ["created_at", "2016-01-22 01:48:07.518742"], ["updated_at", "2016-01-22 01:48:07.518742"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "athletes" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Tomas Gleichner"], ["created_at", "2016-01-22 01:48:07.520379"], ["updated_at", "2016-01-22 01:48:07.520379"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "fans" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "Jannie Bernhard PhD"], ["created_at", "2016-01-22 01:48:07.522025"], ["updated_at", "2016-01-22 01:48:07.522025"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 1], ["fan_id", 8], ["start_time", "2016-01-22 03:51:36.000000"], ["end_time", "2016-01-22 01:48:07.531956"], ["created_at", "2016-01-22 01:48:07.537606"], ["updated_at", "2016-01-22 01:48:07.537606"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 1], ["fan_id", 7], ["start_time", "2016-01-22 07:27:48.000000"], ["end_time", "2016-01-22 01:48:07.547644"], ["created_at", "2016-01-22 01:48:07.548550"], ["updated_at", "2016-01-22 01:48:07.548550"]]
+  [1m[36m (6.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 1], ["fan_id", 6], ["start_time", "2016-01-21 19:16:55.000000"], ["end_time", "2016-01-22 01:48:07.557006"], ["created_at", "2016-01-22 01:48:07.557861"], ["updated_at", "2016-01-22 01:48:07.557861"]]
+  [1m[35m (5.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 1], ["fan_id", 6], ["start_time", "2016-01-21 19:30:38.000000"], ["end_time", "2016-01-22 01:48:07.565087"], ["created_at", "2016-01-22 01:48:07.565965"], ["updated_at", "2016-01-22 01:48:07.565965"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 1], ["fan_id", 9], ["start_time", "2016-01-21 13:18:18.000000"], ["end_time", "2016-01-22 01:48:07.568231"], ["created_at", "2016-01-22 01:48:07.568947"], ["updated_at", "2016-01-22 01:48:07.568947"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 2], ["fan_id", 6], ["start_time", "2016-01-21 15:30:21.000000"], ["end_time", "2016-01-22 01:48:07.570958"], ["created_at", "2016-01-22 01:48:07.571616"], ["updated_at", "2016-01-22 01:48:07.571616"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 2], ["fan_id", 9], ["start_time", "2016-01-21 18:41:12.000000"], ["end_time", "2016-01-22 01:48:07.573567"], ["created_at", "2016-01-22 01:48:07.574285"], ["updated_at", "2016-01-22 01:48:07.574285"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 2], ["fan_id", 1], ["start_time", "2016-01-22 02:04:29.000000"], ["end_time", "2016-01-22 01:48:07.576258"], ["created_at", "2016-01-22 01:48:07.576922"], ["updated_at", "2016-01-22 01:48:07.576922"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 2], ["fan_id", 10], ["start_time", "2016-01-21 08:50:28.000000"], ["end_time", "2016-01-22 01:48:07.579164"], ["created_at", "2016-01-22 01:48:07.579746"], ["updated_at", "2016-01-22 01:48:07.579746"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 2], ["fan_id", 4], ["start_time", "2016-01-21 21:12:11.000000"], ["end_time", "2016-01-22 01:48:07.581536"], ["created_at", "2016-01-22 01:48:07.582139"], ["updated_at", "2016-01-22 01:48:07.582139"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 3], ["fan_id", 10], ["start_time", "2016-01-21 13:00:30.000000"], ["end_time", "2016-01-22 01:48:07.583777"], ["created_at", "2016-01-22 01:48:07.584245"], ["updated_at", "2016-01-22 01:48:07.584245"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 3], ["fan_id", 2], ["start_time", "2016-01-22 01:27:49.000000"], ["end_time", "2016-01-22 01:48:07.585638"], ["created_at", "2016-01-22 01:48:07.586076"], ["updated_at", "2016-01-22 01:48:07.586076"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 3], ["fan_id", 1], ["start_time", "2016-01-22 04:58:04.000000"], ["end_time", "2016-01-22 01:48:07.587360"], ["created_at", "2016-01-22 01:48:07.587750"], ["updated_at", "2016-01-22 01:48:07.587750"]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 3], ["fan_id", 6], ["start_time", "2016-01-21 13:33:59.000000"], ["end_time", "2016-01-22 01:48:07.588866"], ["created_at", "2016-01-22 01:48:07.589294"], ["updated_at", "2016-01-22 01:48:07.589294"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 3], ["fan_id", 5], ["start_time", "2016-01-21 15:30:20.000000"], ["end_time", "2016-01-22 01:48:07.590523"], ["created_at", "2016-01-22 01:48:07.590966"], ["updated_at", "2016-01-22 01:48:07.590966"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 4], ["fan_id", 7], ["start_time", "2016-01-21 20:53:08.000000"], ["end_time", "2016-01-22 01:48:07.592420"], ["created_at", "2016-01-22 01:48:07.592873"], ["updated_at", "2016-01-22 01:48:07.592873"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 4], ["fan_id", 10], ["start_time", "2016-01-22 03:44:25.000000"], ["end_time", "2016-01-22 01:48:07.594438"], ["created_at", "2016-01-22 01:48:07.594891"], ["updated_at", "2016-01-22 01:48:07.594891"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 4], ["fan_id", 5], ["start_time", "2016-01-21 12:30:19.000000"], ["end_time", "2016-01-22 01:48:07.596463"], ["created_at", "2016-01-22 01:48:07.597119"], ["updated_at", "2016-01-22 01:48:07.597119"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 4], ["fan_id", 8], ["start_time", "2016-01-21 08:18:16.000000"], ["end_time", "2016-01-22 01:48:07.599025"], ["created_at", "2016-01-22 01:48:07.599658"], ["updated_at", "2016-01-22 01:48:07.599658"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 4], ["fan_id", 8], ["start_time", "2016-01-21 22:26:18.000000"], ["end_time", "2016-01-22 01:48:07.601396"], ["created_at", "2016-01-22 01:48:07.601915"], ["updated_at", "2016-01-22 01:48:07.601915"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 5], ["fan_id", 4], ["start_time", "2016-01-21 19:50:18.000000"], ["end_time", "2016-01-22 01:48:07.603352"], ["created_at", "2016-01-22 01:48:07.603814"], ["updated_at", "2016-01-22 01:48:07.603814"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 5], ["fan_id", 7], ["start_time", "2016-01-21 13:07:24.000000"], ["end_time", "2016-01-22 01:48:07.605255"], ["created_at", "2016-01-22 01:48:07.605705"], ["updated_at", "2016-01-22 01:48:07.605705"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 5], ["fan_id", 10], ["start_time", "2016-01-21 15:02:53.000000"], ["end_time", "2016-01-22 01:48:07.607087"], ["created_at", "2016-01-22 01:48:07.607510"], ["updated_at", "2016-01-22 01:48:07.607510"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 5], ["fan_id", 7], ["start_time", "2016-01-21 15:32:18.000000"], ["end_time", "2016-01-22 01:48:07.608744"], ["created_at", "2016-01-22 01:48:07.609173"], ["updated_at", "2016-01-22 01:48:07.609173"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 5], ["fan_id", 5], ["start_time", "2016-01-21 21:23:21.000000"], ["end_time", "2016-01-22 01:48:07.610857"], ["created_at", "2016-01-22 01:48:07.611341"], ["updated_at", "2016-01-22 01:48:07.611341"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 6], ["fan_id", 4], ["start_time", "2016-01-22 05:07:37.000000"], ["end_time", "2016-01-22 01:48:07.612877"], ["created_at", "2016-01-22 01:48:07.613353"], ["updated_at", "2016-01-22 01:48:07.613353"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 6], ["fan_id", 1], ["start_time", "2016-01-22 01:54:51.000000"], ["end_time", "2016-01-22 01:48:07.614757"], ["created_at", "2016-01-22 01:48:07.615234"], ["updated_at", "2016-01-22 01:48:07.615234"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 6], ["fan_id", 2], ["start_time", "2016-01-22 02:02:43.000000"], ["end_time", "2016-01-22 01:48:07.616625"], ["created_at", "2016-01-22 01:48:07.617070"], ["updated_at", "2016-01-22 01:48:07.617070"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 6], ["fan_id", 1], ["start_time", "2016-01-22 02:55:07.000000"], ["end_time", "2016-01-22 01:48:07.618401"], ["created_at", "2016-01-22 01:48:07.618829"], ["updated_at", "2016-01-22 01:48:07.618829"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 6], ["fan_id", 4], ["start_time", "2016-01-21 15:21:48.000000"], ["end_time", "2016-01-22 01:48:07.620151"], ["created_at", "2016-01-22 01:48:07.620629"], ["updated_at", "2016-01-22 01:48:07.620629"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 7], ["fan_id", 10], ["start_time", "2016-01-22 02:08:02.000000"], ["end_time", "2016-01-22 01:48:07.622259"], ["created_at", "2016-01-22 01:48:07.622728"], ["updated_at", "2016-01-22 01:48:07.622728"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 7], ["fan_id", 4], ["start_time", "2016-01-21 19:45:26.000000"], ["end_time", "2016-01-22 01:48:07.624134"], ["created_at", "2016-01-22 01:48:07.624558"], ["updated_at", "2016-01-22 01:48:07.624558"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 7], ["fan_id", 1], ["start_time", "2016-01-22 01:18:42.000000"], ["end_time", "2016-01-22 01:48:07.625857"], ["created_at", "2016-01-22 01:48:07.626269"], ["updated_at", "2016-01-22 01:48:07.626269"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 7], ["fan_id", 3], ["start_time", "2016-01-21 16:37:11.000000"], ["end_time", "2016-01-22 01:48:07.627520"], ["created_at", "2016-01-22 01:48:07.627935"], ["updated_at", "2016-01-22 01:48:07.627935"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 7], ["fan_id", 5], ["start_time", "2016-01-22 05:06:22.000000"], ["end_time", "2016-01-22 01:48:07.629245"], ["created_at", "2016-01-22 01:48:07.629691"], ["updated_at", "2016-01-22 01:48:07.629691"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 8], ["fan_id", 8], ["start_time", "2016-01-21 20:21:27.000000"], ["end_time", "2016-01-22 01:48:07.631272"], ["created_at", "2016-01-22 01:48:07.631739"], ["updated_at", "2016-01-22 01:48:07.631739"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 8], ["fan_id", 7], ["start_time", "2016-01-21 18:33:26.000000"], ["end_time", "2016-01-22 01:48:07.633114"], ["created_at", "2016-01-22 01:48:07.633583"], ["updated_at", "2016-01-22 01:48:07.633583"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 8], ["fan_id", 9], ["start_time", "2016-01-21 19:22:38.000000"], ["end_time", "2016-01-22 01:48:07.634993"], ["created_at", "2016-01-22 01:48:07.635460"], ["updated_at", "2016-01-22 01:48:07.635460"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 8], ["fan_id", 9], ["start_time", "2016-01-22 06:39:41.000000"], ["end_time", "2016-01-22 01:48:07.636803"], ["created_at", "2016-01-22 01:48:07.637188"], ["updated_at", "2016-01-22 01:48:07.637188"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 8], ["fan_id", 10], ["start_time", "2016-01-22 03:18:11.000000"], ["end_time", "2016-01-22 01:48:07.638474"], ["created_at", "2016-01-22 01:48:07.638869"], ["updated_at", "2016-01-22 01:48:07.638869"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 9], ["fan_id", 5], ["start_time", "2016-01-21 18:08:25.000000"], ["end_time", "2016-01-22 01:48:07.640484"], ["created_at", "2016-01-22 01:48:07.640927"], ["updated_at", "2016-01-22 01:48:07.640927"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 9], ["fan_id", 1], ["start_time", "2016-01-22 05:08:52.000000"], ["end_time", "2016-01-22 01:48:07.642363"], ["created_at", "2016-01-22 01:48:07.642790"], ["updated_at", "2016-01-22 01:48:07.642790"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 9], ["fan_id", 10], ["start_time", "2016-01-21 19:14:52.000000"], ["end_time", "2016-01-22 01:48:07.644050"], ["created_at", "2016-01-22 01:48:07.644527"], ["updated_at", "2016-01-22 01:48:07.644527"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 9], ["fan_id", 3], ["start_time", "2016-01-21 13:31:00.000000"], ["end_time", "2016-01-22 01:48:07.645908"], ["created_at", "2016-01-22 01:48:07.646365"], ["updated_at", "2016-01-22 01:48:07.646365"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 9], ["fan_id", 3], ["start_time", "2016-01-21 19:49:11.000000"], ["end_time", "2016-01-22 01:48:07.647738"], ["created_at", "2016-01-22 01:48:07.648146"], ["updated_at", "2016-01-22 01:48:07.648146"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 10], ["fan_id", 10], ["start_time", "2016-01-21 20:57:13.000000"], ["end_time", "2016-01-22 01:48:07.649686"], ["created_at", "2016-01-22 01:48:07.650130"], ["updated_at", "2016-01-22 01:48:07.650130"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 10], ["fan_id", 6], ["start_time", "2016-01-21 09:31:09.000000"], ["end_time", "2016-01-22 01:48:07.651507"], ["created_at", "2016-01-22 01:48:07.651976"], ["updated_at", "2016-01-22 01:48:07.651976"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 10], ["fan_id", 3], ["start_time", "2016-01-21 21:26:09.000000"], ["end_time", "2016-01-22 01:48:07.653303"], ["created_at", "2016-01-22 01:48:07.653748"], ["updated_at", "2016-01-22 01:48:07.653748"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["host_id", 10], ["fan_id", 3], ["start_time", "2016-01-22 07:31:57.000000"], ["end_time", "2016-01-22 01:48:07.655155"], ["created_at", "2016-01-22 01:48:07.655595"], ["updated_at", "2016-01-22 01:48:07.655595"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "qas" ("host_id", "fan_id", "start_time", "end_time", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["host_id", 10], ["fan_id", 3], ["start_time", "2016-01-21 22:29:51.000000"], ["end_time", "2016-01-22 01:48:07.656929"], ["created_at", "2016-01-22 01:48:07.657364"], ["updated_at", "2016-01-22 01:48:07.657364"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Non omnis nobis est minima ut sed."], ["qa_id", 9], ["fan_id", 1], ["created_at", "2016-01-22 01:48:07.665764"], ["updated_at", "2016-01-22 01:48:07.665764"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Consequatur nesciunt qui enim."], ["qa_id", 2], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.674659"], ["updated_at", "2016-01-22 01:48:07.674659"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Commodi amet repellat culpa voluptate et assumenda."], ["qa_id", 8], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.683475"], ["updated_at", "2016-01-22 01:48:07.683475"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ab facilis voluptas quia quo sit."], ["qa_id", 3], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.686109"], ["updated_at", "2016-01-22 01:48:07.686109"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Fuga et sapiente porro ut possimus dolor provident."], ["qa_id", 7], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.688427"], ["updated_at", "2016-01-22 01:48:07.688427"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ut vel facere dolores ut voluptatem enim eos."], ["qa_id", 6], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.690803"], ["updated_at", "2016-01-22 01:48:07.690803"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Omnis accusantium voluptas voluptates autem modi voluptatem."], ["qa_id", 7], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.693116"], ["updated_at", "2016-01-22 01:48:07.693116"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Sed sed omnis dolores possimus odio incidunt hic molestiae."], ["qa_id", 7], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.695456"], ["updated_at", "2016-01-22 01:48:07.695456"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Reprehenderit non non praesentium facilis ad ratione aut facere."], ["qa_id", 10], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.697542"], ["updated_at", "2016-01-22 01:48:07.697542"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Sequi ea libero unde."], ["qa_id", 9], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.699287"], ["updated_at", "2016-01-22 01:48:07.699287"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Sunt voluptate placeat sed fuga fugit."], ["qa_id", 9], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.700810"], ["updated_at", "2016-01-22 01:48:07.700810"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Nihil sed sequi ratione voluptatem sint."], ["qa_id", 2], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.702457"], ["updated_at", "2016-01-22 01:48:07.702457"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Consequatur dolore aut et pariatur sunt sit."], ["qa_id", 1], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.704048"], ["updated_at", "2016-01-22 01:48:07.704048"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "At quia dolorem quia."], ["qa_id", 7], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.706010"], ["updated_at", "2016-01-22 01:48:07.706010"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Ut ut et fuga ea enim autem tenetur ut."], ["qa_id", 9], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.707521"], ["updated_at", "2016-01-22 01:48:07.707521"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Amet sit accusamus sequi molestias dolores sunt architecto sunt."], ["qa_id", 3], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.709035"], ["updated_at", "2016-01-22 01:48:07.709035"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Vero animi dolores iusto."], ["qa_id", 9], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.710643"], ["updated_at", "2016-01-22 01:48:07.710643"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Corrupti placeat ducimus enim qui."], ["qa_id", 8], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.712329"], ["updated_at", "2016-01-22 01:48:07.712329"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Dolor quia nobis laudantium accusamus quibusdam voluptas est cum."], ["qa_id", 4], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.714104"], ["updated_at", "2016-01-22 01:48:07.714104"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Nesciunt odio ut excepturi."], ["qa_id", 1], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.715751"], ["updated_at", "2016-01-22 01:48:07.715751"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Doloremque dolorem quo ut at sunt atque voluptatem nemo."], ["qa_id", 8], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.717341"], ["updated_at", "2016-01-22 01:48:07.717341"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Perspiciatis dolores quas doloremque voluptatum."], ["qa_id", 3], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.719014"], ["updated_at", "2016-01-22 01:48:07.719014"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Magni mollitia eaque dolorem eum magnam dolorem."], ["qa_id", 10], ["fan_id", 1], ["created_at", "2016-01-22 01:48:07.720830"], ["updated_at", "2016-01-22 01:48:07.720830"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ut cupiditate ut omnis incidunt."], ["qa_id", 9], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.723075"], ["updated_at", "2016-01-22 01:48:07.723075"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Voluptatem dolor ad perspiciatis."], ["qa_id", 7], ["fan_id", 5], ["created_at", "2016-01-22 01:48:07.725368"], ["updated_at", "2016-01-22 01:48:07.725368"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et sunt qui quidem."], ["qa_id", 2], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.727668"], ["updated_at", "2016-01-22 01:48:07.727668"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Ducimus officiis quos necessitatibus hic quibusdam facere dicta nostrum."], ["qa_id", 2], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.729949"], ["updated_at", "2016-01-22 01:48:07.729949"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Consequuntur maxime officia ut perspiciatis est quis porro."], ["qa_id", 8], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.732152"], ["updated_at", "2016-01-22 01:48:07.732152"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Asperiores qui voluptatibus aspernatur repellat vitae."], ["qa_id", 6], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.734460"], ["updated_at", "2016-01-22 01:48:07.734460"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Nulla ipsum vel velit."], ["qa_id", 7], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.736805"], ["updated_at", "2016-01-22 01:48:07.736805"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Porro voluptate illo voluptatem culpa optio rem ipsam."], ["qa_id", 5], ["fan_id", 1], ["created_at", "2016-01-22 01:48:07.738679"], ["updated_at", "2016-01-22 01:48:07.738679"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Eligendi non perspiciatis voluptas."], ["qa_id", 10], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.740333"], ["updated_at", "2016-01-22 01:48:07.740333"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Non tempora autem reprehenderit nam quo nostrum corrupti."], ["qa_id", 1], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.741991"], ["updated_at", "2016-01-22 01:48:07.741991"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Optio praesentium expedita quasi repudiandae qui."], ["qa_id", 7], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.743564"], ["updated_at", "2016-01-22 01:48:07.743564"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Tempora non non aliquam voluptatem."], ["qa_id", 1], ["fan_id", 5], ["created_at", "2016-01-22 01:48:07.745437"], ["updated_at", "2016-01-22 01:48:07.745437"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ut libero animi consequuntur ut in in corrupti."], ["qa_id", 5], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.747501"], ["updated_at", "2016-01-22 01:48:07.747501"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Consequatur quas voluptatem porro ex animi."], ["qa_id", 7], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.749297"], ["updated_at", "2016-01-22 01:48:07.749297"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Eos sed autem ut rem impedit vero modi quo."], ["qa_id", 3], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.759361"], ["updated_at", "2016-01-22 01:48:07.759361"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Vero doloremque sequi aspernatur at et et facilis quis."], ["qa_id", 5], ["fan_id", 1], ["created_at", "2016-01-22 01:48:07.761917"], ["updated_at", "2016-01-22 01:48:07.761917"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Magnam veniam sit qui deleniti autem."], ["qa_id", 4], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.764530"], ["updated_at", "2016-01-22 01:48:07.764530"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Fugit veritatis alias fugiat et quisquam et rerum dolorem."], ["qa_id", 3], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.766654"], ["updated_at", "2016-01-22 01:48:07.766654"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ea quos nihil adipisci consequatur."], ["qa_id", 1], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.768553"], ["updated_at", "2016-01-22 01:48:07.768553"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Molestias aliquam consectetur a quae officiis."], ["qa_id", 4], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.770415"], ["updated_at", "2016-01-22 01:48:07.770415"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et labore quod dolorem."], ["qa_id", 6], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.772120"], ["updated_at", "2016-01-22 01:48:07.772120"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Harum exercitationem rerum neque."], ["qa_id", 8], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.773696"], ["updated_at", "2016-01-22 01:48:07.773696"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Officiis et suscipit repudiandae."], ["qa_id", 4], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.775169"], ["updated_at", "2016-01-22 01:48:07.775169"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Omnis dolorem aut voluptatem in."], ["qa_id", 2], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.777053"], ["updated_at", "2016-01-22 01:48:07.777053"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Cumque mollitia voluptas et sed."], ["qa_id", 2], ["fan_id", 5], ["created_at", "2016-01-22 01:48:07.778783"], ["updated_at", "2016-01-22 01:48:07.778783"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Placeat delectus provident quae aut."], ["qa_id", 2], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.780451"], ["updated_at", "2016-01-22 01:48:07.780451"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Consequatur neque veniam voluptate dolores doloribus alias quam."], ["qa_id", 2], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.782089"], ["updated_at", "2016-01-22 01:48:07.782089"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Tenetur cum quasi delectus enim quia fugit."], ["qa_id", 3], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.783702"], ["updated_at", "2016-01-22 01:48:07.783702"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et facere et voluptas."], ["qa_id", 3], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.785544"], ["updated_at", "2016-01-22 01:48:07.785544"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Omnis qui autem culpa."], ["qa_id", 5], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.787284"], ["updated_at", "2016-01-22 01:48:07.787284"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Non ut debitis autem corporis voluptatem molestiae eum."], ["qa_id", 6], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.789147"], ["updated_at", "2016-01-22 01:48:07.789147"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Sit et quibusdam fugiat rerum quis praesentium quis."], ["qa_id", 6], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.790937"], ["updated_at", "2016-01-22 01:48:07.790937"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ut reprehenderit veritatis totam voluptatum expedita aut."], ["qa_id", 9], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.792560"], ["updated_at", "2016-01-22 01:48:07.792560"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Dicta qui dolore consectetur consequuntur odit voluptates laudantium maiores."], ["qa_id", 9], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.794333"], ["updated_at", "2016-01-22 01:48:07.794333"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Quam quas ut et sunt."], ["qa_id", 1], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.796220"], ["updated_at", "2016-01-22 01:48:07.796220"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Sint illum officia incidunt repudiandae."], ["qa_id", 7], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.797956"], ["updated_at", "2016-01-22 01:48:07.797956"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Cupiditate et deserunt dolorem laudantium id consequatur."], ["qa_id", 1], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.799772"], ["updated_at", "2016-01-22 01:48:07.799772"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Non perspiciatis et omnis autem."], ["qa_id", 9], ["fan_id", 1], ["created_at", "2016-01-22 01:48:07.801960"], ["updated_at", "2016-01-22 01:48:07.801960"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Harum dolorem aut illum corporis."], ["qa_id", 6], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.803762"], ["updated_at", "2016-01-22 01:48:07.803762"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Quis harum qui excepturi magnam placeat molestias recusandae."], ["qa_id", 10], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.805606"], ["updated_at", "2016-01-22 01:48:07.805606"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Officia repellendus dolorem rerum esse blanditiis."], ["qa_id", 10], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.807486"], ["updated_at", "2016-01-22 01:48:07.807486"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Nihil esse eius commodi."], ["qa_id", 5], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.809016"], ["updated_at", "2016-01-22 01:48:07.809016"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Aliquid ipsam ipsum qui deserunt."], ["qa_id", 7], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.810864"], ["updated_at", "2016-01-22 01:48:07.810864"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Dolores explicabo qui ab tenetur qui."], ["qa_id", 10], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.812537"], ["updated_at", "2016-01-22 01:48:07.812537"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Voluptatibus ut consequatur aut libero aut."], ["qa_id", 8], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.814199"], ["updated_at", "2016-01-22 01:48:07.814199"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Atque sit ipsa et animi tempore quam quo."], ["qa_id", 1], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.815749"], ["updated_at", "2016-01-22 01:48:07.815749"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Aperiam tempora error at necessitatibus neque similique nihil consequatur."], ["qa_id", 9], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.817372"], ["updated_at", "2016-01-22 01:48:07.817372"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Quia molestias eum quisquam sit ea libero consequatur ut."], ["qa_id", 8], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.818963"], ["updated_at", "2016-01-22 01:48:07.818963"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Maxime dicta doloribus alias a ea ab."], ["qa_id", 5], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.820614"], ["updated_at", "2016-01-22 01:48:07.820614"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Molestiae voluptates unde non non consequuntur sunt earum deleniti."], ["qa_id", 5], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.822374"], ["updated_at", "2016-01-22 01:48:07.822374"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Quas est doloremque ipsam earum debitis harum fuga quam."], ["qa_id", 1], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.824134"], ["updated_at", "2016-01-22 01:48:07.824134"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Dolorum eaque voluptatum recusandae soluta inventore veniam assumenda porro."], ["qa_id", 7], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.825908"], ["updated_at", "2016-01-22 01:48:07.825908"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Harum assumenda libero minima."], ["qa_id", 10], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.828471"], ["updated_at", "2016-01-22 01:48:07.828471"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Quo rerum veniam error rerum ratione ea."], ["qa_id", 10], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.830898"], ["updated_at", "2016-01-22 01:48:07.830898"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Est ut est aspernatur unde non doloribus ab enim."], ["qa_id", 1], ["fan_id", 2], ["created_at", "2016-01-22 01:48:07.833154"], ["updated_at", "2016-01-22 01:48:07.833154"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Non recusandae dolorem voluptatem."], ["qa_id", 6], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.835528"], ["updated_at", "2016-01-22 01:48:07.835528"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Est sequi rerum laudantium accusantium voluptatem."], ["qa_id", 5], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.838169"], ["updated_at", "2016-01-22 01:48:07.838169"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Accusamus ut ducimus a sunt labore esse."], ["qa_id", 8], ["fan_id", 5], ["created_at", "2016-01-22 01:48:07.840257"], ["updated_at", "2016-01-22 01:48:07.840257"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ut et vero dolor ullam accusamus illo maxime."], ["qa_id", 2], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.841993"], ["updated_at", "2016-01-22 01:48:07.841993"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Corrupti velit quidem similique et ea consequatur qui."], ["qa_id", 8], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.843659"], ["updated_at", "2016-01-22 01:48:07.843659"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et esse recusandae quia deserunt qui."], ["qa_id", 9], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.845307"], ["updated_at", "2016-01-22 01:48:07.845307"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Dolorem temporibus non beatae quisquam consequatur ab autem sint."], ["qa_id", 9], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.846888"], ["updated_at", "2016-01-22 01:48:07.846888"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Nobis officiis quaerat quia sit cum neque unde et."], ["qa_id", 2], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.848483"], ["updated_at", "2016-01-22 01:48:07.848483"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Cumque iure iusto dolore fugit eos."], ["qa_id", 4], ["fan_id", 8], ["created_at", "2016-01-22 01:48:07.850411"], ["updated_at", "2016-01-22 01:48:07.850411"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "In maiores qui aut."], ["qa_id", 1], ["fan_id", 6], ["created_at", "2016-01-22 01:48:07.852652"], ["updated_at", "2016-01-22 01:48:07.852652"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Delectus fuga qui ut molestiae id enim nobis."], ["qa_id", 2], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.854704"], ["updated_at", "2016-01-22 01:48:07.854704"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Est labore omnis velit nostrum a perspiciatis."], ["qa_id", 7], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.856336"], ["updated_at", "2016-01-22 01:48:07.856336"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Sed in cupiditate consequuntur iste reprehenderit."], ["qa_id", 1], ["fan_id", 7], ["created_at", "2016-01-22 01:48:07.857989"], ["updated_at", "2016-01-22 01:48:07.857989"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Id corporis reprehenderit repudiandae quasi est omnis autem."], ["qa_id", 9], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.859634"], ["updated_at", "2016-01-22 01:48:07.859634"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Ut dolor sit provident cupiditate."], ["qa_id", 5], ["fan_id", 9], ["created_at", "2016-01-22 01:48:07.861327"], ["updated_at", "2016-01-22 01:48:07.861327"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Eum ut aut aut nulla suscipit."], ["qa_id", 9], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.863025"], ["updated_at", "2016-01-22 01:48:07.863025"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Et hic voluptate est aliquam consequatur et sint."], ["qa_id", 8], ["fan_id", 3], ["created_at", "2016-01-22 01:48:07.865381"], ["updated_at", "2016-01-22 01:48:07.865381"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ipsum maxime sunt quaerat quidem dignissimos quia."], ["qa_id", 10], ["fan_id", 5], ["created_at", "2016-01-22 01:48:07.867263"], ["updated_at", "2016-01-22 01:48:07.867263"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Explicabo sed et in."], ["qa_id", 3], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.868954"], ["updated_at", "2016-01-22 01:48:07.868954"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ullam laboriosam nihil rerum."], ["qa_id", 6], ["fan_id", 1], ["created_at", "2016-01-22 01:48:07.870796"], ["updated_at", "2016-01-22 01:48:07.870796"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Aperiam et aut ipsa."], ["qa_id", 7], ["fan_id", 10], ["created_at", "2016-01-22 01:48:07.872373"], ["updated_at", "2016-01-22 01:48:07.872373"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "questions" ("content", "qa_id", "fan_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Voluptatum voluptatibus quibusdam consequatur debitis."], ["qa_id", 1], ["fan_id", 4], ["created_at", "2016-01-22 01:48:07.873901"], ["updated_at", "2016-01-22 01:48:07.873901"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Quia tempore voluptate maxime ut sed molestiae laudantium velit."], ["question_id", 1], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.883552"], ["updated_at", "2016-01-22 01:48:07.883552"]]
+  [1m[35m (6.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et quisquam maiores ut quos nemo optio saepe."], ["question_id", 2], ["athlete_id", 9], ["created_at", "2016-01-22 01:48:07.892636"], ["updated_at", "2016-01-22 01:48:07.892636"]]
+  [1m[36m (6.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Asperiores porro exercitationem quasi."], ["question_id", 3], ["athlete_id", 9], ["created_at", "2016-01-22 01:48:07.901980"], ["updated_at", "2016-01-22 01:48:07.901980"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Provident voluptatem et deserunt quia explicabo."], ["question_id", 4], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:07.904677"], ["updated_at", "2016-01-22 01:48:07.904677"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Repellat quibusdam maxime atque nemo."], ["question_id", 5], ["athlete_id", 9], ["created_at", "2016-01-22 01:48:07.907483"], ["updated_at", "2016-01-22 01:48:07.907483"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Itaque voluptatum quo culpa est sunt labore nobis est."], ["question_id", 6], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:07.909901"], ["updated_at", "2016-01-22 01:48:07.909901"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Velit nobis et non fugiat vero unde fugit et."], ["question_id", 7], ["athlete_id", 5], ["created_at", "2016-01-22 01:48:07.911628"], ["updated_at", "2016-01-22 01:48:07.911628"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Nobis ex architecto temporibus eos aliquam perspiciatis adipisci."], ["question_id", 8], ["athlete_id", 5], ["created_at", "2016-01-22 01:48:07.913441"], ["updated_at", "2016-01-22 01:48:07.913441"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Tenetur perferendis eos aspernatur eveniet a optio."], ["question_id", 9], ["athlete_id", 4], ["created_at", "2016-01-22 01:48:07.916945"], ["updated_at", "2016-01-22 01:48:07.916945"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et fugiat molestias nemo."], ["question_id", 10], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:07.919327"], ["updated_at", "2016-01-22 01:48:07.919327"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Fugiat officia vitae dolores."], ["question_id", 11], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.921708"], ["updated_at", "2016-01-22 01:48:07.921708"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Odit distinctio est beatae consequatur qui nostrum."], ["question_id", 12], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:07.923756"], ["updated_at", "2016-01-22 01:48:07.923756"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Dolorem dicta illum ipsam labore et unde."], ["question_id", 13], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:07.925479"], ["updated_at", "2016-01-22 01:48:07.925479"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ut non molestiae blanditiis labore."], ["question_id", 14], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:07.927144"], ["updated_at", "2016-01-22 01:48:07.927144"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Sunt quos ipsa veniam sint optio ullam amet."], ["question_id", 15], ["athlete_id", 3], ["created_at", "2016-01-22 01:48:07.929137"], ["updated_at", "2016-01-22 01:48:07.929137"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Recusandae voluptates velit nostrum."], ["question_id", 16], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.931339"], ["updated_at", "2016-01-22 01:48:07.931339"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Ut aut voluptas at quisquam voluptatem sit."], ["question_id", 17], ["athlete_id", 4], ["created_at", "2016-01-22 01:48:07.933348"], ["updated_at", "2016-01-22 01:48:07.933348"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Possimus autem quia aperiam molestiae voluptas sed et qui."], ["question_id", 18], ["athlete_id", 9], ["created_at", "2016-01-22 01:48:07.934939"], ["updated_at", "2016-01-22 01:48:07.934939"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Dolorem id animi architecto eos accusamus vero iste itaque."], ["question_id", 19], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:07.936789"], ["updated_at", "2016-01-22 01:48:07.936789"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Atque tenetur placeat totam eum rerum excepturi consequuntur maiores."], ["question_id", 20], ["athlete_id", 4], ["created_at", "2016-01-22 01:48:07.938584"], ["updated_at", "2016-01-22 01:48:07.938584"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Quia voluptatibus doloremque sit temporibus doloribus qui maiores enim."], ["question_id", 21], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:07.940858"], ["updated_at", "2016-01-22 01:48:07.940858"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Dolores et corporis quod tempore qui accusantium."], ["question_id", 22], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:07.943388"], ["updated_at", "2016-01-22 01:48:07.943388"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Rerum totam mollitia minus illo illum."], ["question_id", 23], ["athlete_id", 3], ["created_at", "2016-01-22 01:48:07.945529"], ["updated_at", "2016-01-22 01:48:07.945529"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Iure aspernatur corrupti suscipit sequi aut distinctio nihil est."], ["question_id", 24], ["athlete_id", 4], ["created_at", "2016-01-22 01:48:07.947295"], ["updated_at", "2016-01-22 01:48:07.947295"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Temporibus facere assumenda rem blanditiis reprehenderit."], ["question_id", 25], ["athlete_id", 9], ["created_at", "2016-01-22 01:48:07.949201"], ["updated_at", "2016-01-22 01:48:07.949201"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Quasi velit nihil aut."], ["question_id", 26], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:07.950857"], ["updated_at", "2016-01-22 01:48:07.950857"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "At sunt velit ut."], ["question_id", 27], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.952480"], ["updated_at", "2016-01-22 01:48:07.952480"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Quisquam non quis dolores porro."], ["question_id", 28], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:07.955156"], ["updated_at", "2016-01-22 01:48:07.955156"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Magnam in occaecati quibusdam et labore."], ["question_id", 29], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:07.957488"], ["updated_at", "2016-01-22 01:48:07.957488"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Voluptas saepe iste doloribus omnis debitis delectus."], ["question_id", 30], ["athlete_id", 5], ["created_at", "2016-01-22 01:48:07.959605"], ["updated_at", "2016-01-22 01:48:07.959605"]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Quae voluptatem laboriosam velit quis et distinctio sint."], ["question_id", 31], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:07.961327"], ["updated_at", "2016-01-22 01:48:07.961327"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Quam corrupti architecto adipisci et temporibus ut soluta."], ["question_id", 32], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.963336"], ["updated_at", "2016-01-22 01:48:07.963336"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Id sit placeat est commodi quas recusandae quisquam."], ["question_id", 33], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:07.965571"], ["updated_at", "2016-01-22 01:48:07.965571"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Voluptatum corrupti vero omnis itaque beatae numquam."], ["question_id", 34], ["athlete_id", 3], ["created_at", "2016-01-22 01:48:07.968000"], ["updated_at", "2016-01-22 01:48:07.968000"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Tempora fugiat dolores dolorem."], ["question_id", 35], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.969679"], ["updated_at", "2016-01-22 01:48:07.969679"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Iste soluta velit deleniti et."], ["question_id", 36], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.971368"], ["updated_at", "2016-01-22 01:48:07.971368"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Non ducimus et facere alias autem voluptas excepturi."], ["question_id", 37], ["athlete_id", 5], ["created_at", "2016-01-22 01:48:07.973026"], ["updated_at", "2016-01-22 01:48:07.973026"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Nesciunt mollitia sapiente veritatis id et tenetur ex."], ["question_id", 38], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.974630"], ["updated_at", "2016-01-22 01:48:07.974630"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Perferendis aut molestiae libero."], ["question_id", 39], ["athlete_id", 7], ["created_at", "2016-01-22 01:48:07.976662"], ["updated_at", "2016-01-22 01:48:07.976662"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Consectetur aut ut tempore ea minus esse nihil laborum."], ["question_id", 40], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:07.978856"], ["updated_at", "2016-01-22 01:48:07.978856"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Quia eaque nihil reiciendis."], ["question_id", 41], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:07.981406"], ["updated_at", "2016-01-22 01:48:07.981406"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Qui rerum commodi dolores."], ["question_id", 42], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.983486"], ["updated_at", "2016-01-22 01:48:07.983486"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Atque itaque et quia."], ["question_id", 43], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.985374"], ["updated_at", "2016-01-22 01:48:07.985374"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et quisquam praesentium cum."], ["question_id", 44], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:07.987672"], ["updated_at", "2016-01-22 01:48:07.987672"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Aut beatae enim consequatur animi et omnis ipsam."], ["question_id", 45], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:07.990046"], ["updated_at", "2016-01-22 01:48:07.990046"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Voluptas sit dolorum laborum fuga voluptatem quam in."], ["question_id", 46], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:07.992461"], ["updated_at", "2016-01-22 01:48:07.992461"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Quis dolores eos magnam facere."], ["question_id", 47], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:07.994328"], ["updated_at", "2016-01-22 01:48:07.994328"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Non voluptates sit dolorem modi aut soluta ad velit."], ["question_id", 48], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:07.996096"], ["updated_at", "2016-01-22 01:48:07.996096"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Nostrum saepe rerum repellendus eligendi aut reiciendis molestias delectus."], ["question_id", 49], ["athlete_id", 5], ["created_at", "2016-01-22 01:48:07.997743"], ["updated_at", "2016-01-22 01:48:07.997743"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ipsum reiciendis non ut laborum corrupti consequatur et."], ["question_id", 50], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:07.999539"], ["updated_at", "2016-01-22 01:48:07.999539"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Commodi corrupti rerum corporis reprehenderit voluptatibus dicta."], ["question_id", 51], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:08.001139"], ["updated_at", "2016-01-22 01:48:08.001139"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Modi adipisci impedit beatae exercitationem."], ["question_id", 52], ["athlete_id", 4], ["created_at", "2016-01-22 01:48:08.002937"], ["updated_at", "2016-01-22 01:48:08.002937"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Sequi quia eius iusto."], ["question_id", 53], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:08.005093"], ["updated_at", "2016-01-22 01:48:08.005093"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Voluptatem dolorem esse laborum odit deserunt sint quisquam voluptatem."], ["question_id", 54], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:08.006761"], ["updated_at", "2016-01-22 01:48:08.006761"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Ut soluta tenetur labore perspiciatis."], ["question_id", 55], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:08.008694"], ["updated_at", "2016-01-22 01:48:08.008694"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Iste qui aliquid voluptate et cumque."], ["question_id", 56], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:08.010553"], ["updated_at", "2016-01-22 01:48:08.010553"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "A eos fugit quia cupiditate qui qui."], ["question_id", 57], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:08.012575"], ["updated_at", "2016-01-22 01:48:08.012575"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et libero sit et molestiae aut et dicta."], ["question_id", 58], ["athlete_id", 4], ["created_at", "2016-01-22 01:48:08.014697"], ["updated_at", "2016-01-22 01:48:08.014697"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Illo labore odit id provident debitis beatae neque."], ["question_id", 59], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:08.016417"], ["updated_at", "2016-01-22 01:48:08.016417"]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et voluptate modi nostrum dicta voluptas est."], ["question_id", 60], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:08.018158"], ["updated_at", "2016-01-22 01:48:08.018158"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Ut et et est itaque dolore nihil nobis."], ["question_id", 61], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:08.019674"], ["updated_at", "2016-01-22 01:48:08.019674"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Aliquid reiciendis quisquam temporibus dolorem eum id ipsum."], ["question_id", 62], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:08.021616"], ["updated_at", "2016-01-22 01:48:08.021616"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Nostrum excepturi ab saepe."], ["question_id", 63], ["athlete_id", 3], ["created_at", "2016-01-22 01:48:08.023989"], ["updated_at", "2016-01-22 01:48:08.023989"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Unde vitae rem sit."], ["question_id", 64], ["athlete_id", 3], ["created_at", "2016-01-22 01:48:08.026322"], ["updated_at", "2016-01-22 01:48:08.026322"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Veritatis repellat eveniet incidunt sed sit voluptatum occaecati omnis."], ["question_id", 65], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:08.028407"], ["updated_at", "2016-01-22 01:48:08.028407"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Vel et temporibus sed."], ["question_id", 66], ["athlete_id", 5], ["created_at", "2016-01-22 01:48:08.030684"], ["updated_at", "2016-01-22 01:48:08.030684"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Pariatur facilis repellendus maiores earum qui nobis quidem."], ["question_id", 67], ["athlete_id", 9], ["created_at", "2016-01-22 01:48:08.033033"], ["updated_at", "2016-01-22 01:48:08.033033"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Quaerat enim et assumenda cum et ut non totam."], ["question_id", 68], ["athlete_id", 9], ["created_at", "2016-01-22 01:48:08.035374"], ["updated_at", "2016-01-22 01:48:08.035374"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Ut sit ipsam culpa quos non."], ["question_id", 69], ["athlete_id", 5], ["created_at", "2016-01-22 01:48:08.037701"], ["updated_at", "2016-01-22 01:48:08.037701"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Quo sed et veniam ut porro molestiae qui."], ["question_id", 70], ["athlete_id", 3], ["created_at", "2016-01-22 01:48:08.040068"], ["updated_at", "2016-01-22 01:48:08.040068"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Laboriosam aliquam illo debitis quaerat."], ["question_id", 71], ["athlete_id", 7], ["created_at", "2016-01-22 01:48:08.041989"], ["updated_at", "2016-01-22 01:48:08.041989"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Accusantium distinctio voluptate esse nesciunt magnam maiores voluptatum molestiae."], ["question_id", 72], ["athlete_id", 7], ["created_at", "2016-01-22 01:48:08.043842"], ["updated_at", "2016-01-22 01:48:08.043842"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Modi sapiente aut et."], ["question_id", 73], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:08.045637"], ["updated_at", "2016-01-22 01:48:08.045637"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Magni et nam animi sequi consequatur dolor."], ["question_id", 74], ["athlete_id", 9], ["created_at", "2016-01-22 01:48:08.047135"], ["updated_at", "2016-01-22 01:48:08.047135"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Eligendi repellat et iure optio."], ["question_id", 75], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:08.049247"], ["updated_at", "2016-01-22 01:48:08.049247"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Sed aliquam voluptatum a unde vel aut sapiente."], ["question_id", 76], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:08.050972"], ["updated_at", "2016-01-22 01:48:08.050972"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Voluptatem deleniti minima nobis modi iure quia dolorum sed."], ["question_id", 77], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:08.052527"], ["updated_at", "2016-01-22 01:48:08.052527"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Perferendis sapiente expedita rerum sint a nulla."], ["question_id", 78], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:08.054223"], ["updated_at", "2016-01-22 01:48:08.054223"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Repellat omnis dolores rerum nulla."], ["question_id", 79], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:08.056335"], ["updated_at", "2016-01-22 01:48:08.056335"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Voluptatem et totam nihil architecto."], ["question_id", 80], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:08.057934"], ["updated_at", "2016-01-22 01:48:08.057934"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Non praesentium sed dolores vel perspiciatis."], ["question_id", 81], ["athlete_id", 10], ["created_at", "2016-01-22 01:48:08.059790"], ["updated_at", "2016-01-22 01:48:08.059790"]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Recusandae non quae harum optio rerum."], ["question_id", 82], ["athlete_id", 7], ["created_at", "2016-01-22 01:48:08.061420"], ["updated_at", "2016-01-22 01:48:08.061420"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Vero asperiores ut est debitis eos."], ["question_id", 83], ["athlete_id", 4], ["created_at", "2016-01-22 01:48:08.063346"], ["updated_at", "2016-01-22 01:48:08.063346"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Officia omnis eum voluptatem earum exercitationem pariatur dolorum."], ["question_id", 84], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:08.065583"], ["updated_at", "2016-01-22 01:48:08.065583"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Omnis vel accusamus possimus."], ["question_id", 85], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:08.067235"], ["updated_at", "2016-01-22 01:48:08.067235"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Eveniet ipsum id qui quibusdam."], ["question_id", 86], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:08.068894"], ["updated_at", "2016-01-22 01:48:08.068894"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Necessitatibus maiores deleniti similique harum illum perspiciatis."], ["question_id", 87], ["athlete_id", 1], ["created_at", "2016-01-22 01:48:08.070465"], ["updated_at", "2016-01-22 01:48:08.070465"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Itaque non dolores sequi libero."], ["question_id", 88], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:08.072999"], ["updated_at", "2016-01-22 01:48:08.072999"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Est enim pariatur et."], ["question_id", 89], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:08.075030"], ["updated_at", "2016-01-22 01:48:08.075030"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Et quis molestias placeat tempore quia inventore est dolor."], ["question_id", 90], ["athlete_id", 7], ["created_at", "2016-01-22 01:48:08.076896"], ["updated_at", "2016-01-22 01:48:08.076896"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Mollitia qui nemo qui et illum."], ["question_id", 91], ["athlete_id", 4], ["created_at", "2016-01-22 01:48:08.078551"], ["updated_at", "2016-01-22 01:48:08.078551"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Ullam deleniti quod provident veniam labore dolores."], ["question_id", 92], ["athlete_id", 6], ["created_at", "2016-01-22 01:48:08.080220"], ["updated_at", "2016-01-22 01:48:08.080220"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Et nulla sed magni et tenetur aut."], ["question_id", 93], ["athlete_id", 7], ["created_at", "2016-01-22 01:48:08.082338"], ["updated_at", "2016-01-22 01:48:08.082338"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Impedit sunt sit eum quibusdam voluptates ut suscipit ratione."], ["question_id", 94], ["athlete_id", 7], ["created_at", "2016-01-22 01:48:08.084916"], ["updated_at", "2016-01-22 01:48:08.084916"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Voluptatibus ut dolor culpa eum recusandae modi."], ["question_id", 95], ["athlete_id", 3], ["created_at", "2016-01-22 01:48:08.086940"], ["updated_at", "2016-01-22 01:48:08.086940"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Quae ut esse inventore quas ea."], ["question_id", 96], ["athlete_id", 3], ["created_at", "2016-01-22 01:48:08.088733"], ["updated_at", "2016-01-22 01:48:08.088733"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Et consectetur veniam laborum eligendi placeat quo natus porro."], ["question_id", 97], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:08.090922"], ["updated_at", "2016-01-22 01:48:08.090922"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Dolor ab sint modi."], ["question_id", 98], ["athlete_id", 5], ["created_at", "2016-01-22 01:48:08.093553"], ["updated_at", "2016-01-22 01:48:08.093553"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Ipsa dolorem sapiente ab quidem ut amet ipsum cumque."], ["question_id", 99], ["athlete_id", 2], ["created_at", "2016-01-22 01:48:08.095582"], ["updated_at", "2016-01-22 01:48:08.095582"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "answers" ("content", "question_id", "athlete_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "Sint mollitia eum animi beatae possimus voluptatibus rerum."], ["question_id", 100], ["athlete_id", 8], ["created_at", "2016-01-22 01:48:08.098034"], ["updated_at", "2016-01-22 01:48:08.098034"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[36mQa Load (0.6ms)[0m  [1mSELECT "qas".* FROM "qas"[0m
